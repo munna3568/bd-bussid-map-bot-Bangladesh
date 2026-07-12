@@ -245,7 +245,7 @@ async def approve_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 245 except Forbidden:
 246 await context.bot.send_message(chat_id=MY_ID, text=f"❌ Could not send rejection to `{user_id}`")
 247
-248 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     if user_id!= MY_ID:
         return

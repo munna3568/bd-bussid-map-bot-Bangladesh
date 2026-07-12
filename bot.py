@@ -230,18 +230,31 @@ async def approve_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_reply_markup(reply_markup=None)
     except Forbidden: await context.bot.send_message(chat_id=MY_ID, text=f"❌ **Approved Failed!**\nUser ID: `{user_id}`", parse_mode='Markdown'); await query.edit_message_reply_markup(reply_markup=None)
 
-async def reject_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query; await query.answer(); user_id = None
-    async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+233 async def reject_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+234 query = update.callback_query
+235 await query.answer()
+236 user_id = None
+237 encoded = query.data.split("_")[1]
+238 user_id, map_key = decode_data(encoded)
+239 try:
+240 _, encoded = query.data.split('_', 1)
+241 name = PAID_MAPS[map_key][0]
+242 await context.bot.send_message(chat_id=user_id, text=f"❌ Your request for *{name}* was rejected.", parse_mode='Markdown')
+243 await context.bot.send_message(chat_id=MY_ID, text=f"❌ Rejected: {name} for `{user_id}`")
+244 await query.edit_message_reply_markup(reply_markup=None)
+245 except Forbidden:
+246 await context.bot.send_message(chat_id=MY_ID, text=f"❌ Could not send rejection to `{user_id}`")
+247
+248 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    if user_id != MY_ID:
+    if user_id!= MY_ID:
         return
     total = len(set(user_data.keys()))
     await update.message.reply_text(f"📊 Bot Stats\nTotal Users: {total}")
 
 async def users_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    if user_id != MY_ID:
+    if user_id!= MY_ID:
         await update.message.reply_text("❌ Admin Only")
         return
     if not user_data:
@@ -251,15 +264,6 @@ async def users_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for uid in user_data.keys():
         msg += f"`{uid}`\n"
     await update.message.reply_text(msg)
-    try:
-        _, encoded = query.data.split('_', 1); user_id, map_key = decode_data(encoded)
-        name = PAID_MAPS[map_key][0]
-        await context.bot.send_message(chat_id=user_id, text=f"⚠️ আপনার স্ক্রিনশটটি সঠিক নয়।\n\n**ম্যাপ:** {name}\n\nআবার সঠিক স্ক্রিনশট পাঠান।", parse_mode='Markdown')
-        await context.bot.send_message(chat_id=MY_ID, text=f"❌ **Rejected Done**\n\nUser ID: `{user_id}`\nMap: {name}", parse_mode='Markdown')
-        await query.edit_message_reply_markup(reply_markup=None)
-    except Forbidden: await context.bot.send_message(chat_id=MY_ID, text=f"❌ **Rejected Failed!**\nUser ID: `{user_id}`", parse_mode='Markdown'); await query.edit_message_reply_markup(reply_markup=None)
-
-async def post_init(application: Application):
     commands = [
         BotCommand("start", "Start - বট চালু করুন"),
         BotCommand("free", "Free Maps 4টি"),

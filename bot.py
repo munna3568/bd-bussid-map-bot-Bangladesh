@@ -232,6 +232,25 @@ async def approve_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def reject_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query; await query.answer(); user_id = None
+    async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    if user_id != MY_ID:
+        return
+    total = len(set(user_data.keys()))
+    await update.message.reply_text(f"📊 Bot Stats\nTotal Users: {total}")
+
+async def users_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    if user_id != MY_ID:
+        await update.message.reply_text("❌ Admin Only")
+        return
+    if not user_data:
+        await update.message.reply_text("কোনো User নাই")
+        return
+    msg = "👥 User List:\n"
+    for uid in user_data.keys():
+        msg += f"`{uid}`\n"
+    await update.message.reply_text(msg)
     try:
         _, encoded = query.data.split('_', 1); user_id, map_key = decode_data(encoded)
         name = PAID_MAPS[map_key][0]

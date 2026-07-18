@@ -47,17 +47,39 @@ PAID_MAPS = {
     "p20": ["20. বাংলাদেশী গ্ৰাম ম্যাপ", "https://drive.google.com/drive/folders/1aXHSa9p-EIfseY1UOeNRCL5riKx3KkhP"],
     "p21": ["21. ঢাকা মাওয়া হাইওয়ে", "https://drive.google.com/drive/folders/1mnRyQCrAFL2pHQI6dShc1lALkta5bOi5"],
     "p22": ["22. যমুনা রেলওয়ের সেতু ম্যাপ ও ট্রেন", "https://drive.google.com/drive/folders/1yaJZx6jZTFXReuAQHVcTObkQaL6UDVRz"],
-}
 BUS_MODS = {
-    "bm1": ["1. হানিফ", "coming_soon"], "bm2": ["2. শ্যামলী", "coming_soon"], "bm3": ["3. নাবিল", "coming_soon"],
-    "bm4": ["4. এস আর লাইন", "coming_soon"], "bm5": ["5. এনা", "coming_soon"], "bm6": ["6. সি লাইন", "coming_soon"],
-    "bm7": ["7. বিআরটিসি", "coming_soon"], "bm8": ["8. ন্যাশনাল ট্রেভেল", "coming_soon"], "bm9": ["9. সকাল সন্ধ্যা", "coming_soon"],
-    "bm10": ["10. এনা ২.০", "coming_soon"], "bm11": ["11. সৌদিয়া মার্সিডিজ এসি", "coming_soon"], "bm12": ["12. গ্ৰামীন ট্রেভেলস", "coming_soon"],
-    "bm13": ["13. হানিফ মার্সিডিজ বেঞ্জ", "coming_soon"],
+    "bm1":  ["1. হানিফ", "https://bdbussid.com/hanif-fuso-non-ac-bus-mod"],
+    "bm2":  ["2. শ্যামলী", "https://bdbussid.com/4515-2"],
+    "bm3":  ["3. নাবিল", "https://youtu.be/nSrysxFL2BY"],
+    "bm4":  ["4. এস আর লাইন", "https://bdbussid.com/si-enterprise-bangladeshi-hino-1j-bus-mod-update-2026"],
+    "bm5":  ["5. এনা", "https://bdbussid.com/ena-1j-ac-bus-mod-2026"],
+    "bm6":  ["6. সি লাইন", "https://bdbussid.com/c-line-premium-ac-bus-mod-for-bussid"],
+    "bm7":  ["7. বিআরটিসি", "https://bdbussid.com/brtc-mod-with-skin-free"],
+    "bm8":  ["8. ন্যাশনাল ট্রাভেলস", "https://youtu.be/KVBiX3_nzWg?si=dHYnKbohnSAaQiZW"],
+    "bm9":  ["9. সকাল সন্ধ্যা", "https://youtu.be/ODx2C1Y46Rg"],
+    "bm10": ["10. এনা 2.0", "https://youtu.be/TdP0QRpJ-7o"],
+    "bm11": ["11. সৌদিয়া মার্সিডিজ বেঞ্জ এসি", "https://youtu.be/M6IdHiQcL-4"],
+    "bm12": ["12. গ্রামীণ ট্রাভেলস", "https://bdbussid.com/aftab-1j-ac-bus-mod-with-skin-2026"],
+    "bm13": ["13. হানিফ মার্সিডিজ বেঞ্জ", "https://youtu.be/iQFHeAJy7Ko?si=dnk9KXoG_9ehD7ki"],
+    "bm14": ["14. বিআরটিসি পুরাতন বাস", "https://bdbussid.com/brtc-bus-mod-old-version"],
+    "bm15": ["15. মামুন পরিবহন", "https://youtu.be/pS1N8P032iQ"],
+    "bm16": ["16. সরকার ট্রাভেলস", "https://youtu.be/PwsdDPFuyaM?si=r0cPu32EuLPmegMJ"],
+    "bm17": ["17. জেনিন", "https://bdbussid.com/zenin-bus-mod-link-generate"],
+    "bm18": ["18. কেআর ট্রাভেলস", "https://bdbussid.com/tr-travels-best-dashborad-mod-link"],
+    "bm19": ["19. দোলা পরিবহন", "https://bdbussid.com/dola-paribahan-bus-mod-2025"],
+    "bm20": ["20. সারা এক্সপ্রেস", "https://youtu.be/oO3sE0S-Eek?si=RZ8mEtVwE8cMDpuA"],
+    "bm21": ["21. গড়াই সেতু", "https://youtu.be/7xYhNfvyUOQ?si=H8w369RTN9pvRueR"],
+}
+
+BUS_PASSWORDS = {
+    "bm1": "8475",
+    "bm6": "763",
 }
 BUS_SKINS = {
-    "bs1": ["1. গেমের প্রথম বাস স্কিন", "coming_soon"],
-    "bs2": ["2. গেমের দ্বিতীয় বাস স্কিন", "coming_soon"],
+    "bs1": ["1. প্রথম বাস - এস আর ট্রাভেলস স্কিন", "https://bdbussid.com/sr-travels-1st-bus-skin-bussid"],
+    "bs2": ["2. শ্যামলী স্কিন", "https://bdbussid.com/4515-2"],
+    "bs3": ["3. হানিফ স্কিন", "https://bdbussid.com/hanif-enterprise-best-skin-for-1st-bus"],
+    "bs4": ["4. হানিফ মার্সিডিজ বেঞ্জ স্কিন", "https://bdbussid.com/mercedes-1623-all-skin-with-template"],
 }
 OBBS = {
     "obb1": ["1. স্পিড ট্রাফিক", "https://tsegaming.com/bd-map-v4-4-1-speed-traffic-obb-setup"],

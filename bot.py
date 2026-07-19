@@ -23,10 +23,11 @@ ADMIN_USERNAME = "@Nayem802325"
 
 # ==================== DATA ==================== [ আগের মতোই সব DATA ]
 FREE_MAPS = {
-    "map1": ["1. ঢাকা টু রংপুর", "https://drive.google.com/drive/folders/1MqUuSO5n_o5_0WzUeyE3RQen6FXutiRW"],
-    "map2": ["2. Bangladesh 300 Fit", "https://drive.google.com/drive/folders/1-jNRfPjI4OlGfDQEglfMuCk2mtj7hedV"],
-    "map3": ["3. যমুনা সেতু ম্যাপ", "https://drive.google.com/file/d/123BVMajNDXwXaz7x3Y5woUKY1y4d6GAj/view?usp=drivesdk"],
-    "map4": ["4. রাজশাহী টু বরিশাল", "https://drive.google.com/drive/folders/1FheeZ49p62z4YWxWKSU22R_2RjC4iALg"],
+    "map1": ["1. ঢাকা টু রংপুর", "https://drive.goog"],
+    "map2": ["2. Bangladesh 300 Fit", "https://dr"],
+    "map3": ["3. যমুনা সেতু ম্যাপ", "https://drive.goo"],
+    "map4": ["4. রাজশাহী টু বরিশাল", "https://drive."],
+    "map5": ["5. ঢাকা সিটি ম্যাপ মোড", "https://youtu.be/tttZqNFDO4c?si=QaWGb0_2sqiBBo7c"]
 }
 PAID_MAPS = {
     "p5": ["5. ঢাকা টু চট্টগ্রাম", "https://drive.google.com/drive/folders/169GKO51_Dyg6XEAkLO0hrT2WymW87cbM"],

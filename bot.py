@@ -47,6 +47,7 @@ PAID_MAPS = {
     "p20": ["20. বাংলাদেশী গ্ৰাম ম্যাপ", "https://drive.google.com/drive/folders/1aXHSa9p-EIfseY1UOeNRCL5riKx3KkhP"],
     "p21": ["21. ঢাকা মাওয়া হাইওয়ে", "https://drive.google.com/drive/folders/1mnRyQCrAFL2pHQI6dShc1lALkta5bOi5"],
     "p22": ["22. যমুনা রেলওয়ের সেতু ম্যাপ ও ট্রেন", "https://drive.google.com/drive/folders/1yaJZx6jZTFXReuAQHVcTObkQaL6UDVRz"],
+}
 BUS_MODS = {
     "bm1":  ["1. হানিফ", "https://bdbussid.com/hanif-fuso-non-ac-bus-mod"],
     "bm2":  ["2. শ্যামলী", "https://bdbussid.com/4515-2"],

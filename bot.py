@@ -68,19 +68,19 @@ BUS_MODS = {
     "bm18": ["18. কেআর ট্রাভেলস", "https://bdbussid.com/tr-travels-best-dashborad-mod-link"],
     "bm19": ["19. দোলা পরিবহন", "https://bdbussid.com/dola-paribahan-bus-mod-2025"],
     "bm20": ["20. সারা এক্সপ্রেস", "https://youtu.be/oO3sE0S-Eek?si=RZ8mEtVwE8cMDpuA"],
-    "bm21": ["21. গড়াই সেতু", "https://youtu.be/7xYhNfvyUOQ?si=H8w369RTN9pvRueR"],
+    "bm21": ["21. গড়াই সেতু", "https://youtu.be/7xYhNfvyUOQ?si=H8w369RTN9pvRueR"]
 }
 
 BUS_PASSWORDS = {
-    "bm1": "8475",
-    "bm6": "763",
+    "হানিফ": "8475",
+    "সি লাইন": "763"
 }
 BUS_SKINS = {
     "bs1": ["1. প্রথম বাস - এস আর ট্রাভেলস স্কিন", "https://bdbussid.com/sr-travels-1st-bus-skin-bussid"],
     "bs2": ["2. শ্যামলী স্কিন", "https://bdbussid.com/4515-2"],
     "bs3": ["3. হানিফ স্কিন", "https://bdbussid.com/hanif-enterprise-best-skin-for-1st-bus"],
     "bs4": ["4. হানিফ মার্সিডিজ বেঞ্জ স্কিন", "https://bdbussid.com/mercedes-1623-all-skin-with-template"],
-}
+} 
 OBBS = {
     "obb1": ["1. স্পিড ট্রাফিক", "https://tsegaming.com/bd-map-v4-4-1-speed-traffic-obb-setup"],
     "obb2": ["2. মিডিয়াম স্পিড ট্রাফিক", "https://tsegaming.com/bd-ets2-v2-traffic-obb-v4-2"],

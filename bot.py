@@ -129,10 +129,10 @@ async def check_both_channels(user_id, context):
 
 async def send_main_menu(target):
     keyboard = [
-        [InlineKeyboardButton("🚌 বাস মোড 13টি - 200-240 KM/H", callback_data=get_callback_data('busmod'))],
-        [InlineKeyboardButton("🎨 বাস স্কিন 2টি", callback_data=get_callback_data('busskin'))],
+        [InlineKeyboardButton("🚌 বাস মোড 21টি - 200-240 KM/H", callback_data=get_callback_data('busmod'))],
+        [InlineKeyboardButton("🎨 বাস স্কিন 4টি", callback_data=get_callback_data('busskin'))],
         [InlineKeyboardButton("📦 OBB 7টি", callback_data=get_callback_data('obb'))],
-        [InlineKeyboardButton("🆓 ম্যাপ 4টি", callback_data=get_callback_data('free'))],
+        [InlineKeyboardButton("🆓 ম্যাপ 5টি", callback_data=get_callback_data('free'))],
         [InlineKeyboardButton("💎 পেইড ম্যাপ 18টি - 40 টাকা", callback_data=get_callback_data('paid'))],
         [InlineKeyboardButton("📺 YouTube", url=YOUTUBE_URL)],
         [InlineKeyboardButton("📘 Facebook Page", url=FB_URL)],

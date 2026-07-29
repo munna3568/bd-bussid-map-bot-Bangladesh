@@ -186,7 +186,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text("🚌 **বাস মোড 13টি**\nSpeed: 200-240 KM/H" + footer, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
     elif base_key == 'busskin':
         keyboard = [[InlineKeyboardButton(name[0], callback_data=get_callback_data(key))] for key, name in BUS_SKINS.items()] + back_btn
-        await query.message.reply_text("🎨 **বাস স্কিন 2টি**" + footer, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+        await query.message.reply_text("🎨 **বাস স্কিন ২টি**" + footer, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
     elif base_key == 'obb':
         keyboard = [[InlineKeyboardButton(name[0], callback_data=get_callback_data(key))] for key, name in OBBS.items()] + back_btn
         await query.message.reply_text("📦 **OBB 7টি**" + footer, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')

@@ -24,9 +24,9 @@ ADMIN_USERNAME = "@Nayem802325"
 # ==================== DATA ==================== [ আগের মতোই সব DATA ]
 FREE_MAPS = {
     "map1": ["1. ঢাকা টু রংপুর", "https://drive.goog"],
-    "map2": ["2. Bangladesh 300 Fit", "https://dr"],
+    "map2": ["2. Bangladesh 300 Fit", "https://drive.google.com/drive/folders/1-jNRfPjI4OlGfDQEglfMuCk2mtj7hedV"],
     "map3": ["3. যমুনা সেতু ম্যাপ", "https://drive.goo"],
-    "map4": ["4. রাজশাহী টু বরিশাল", "https://drive."],
+    "map4": ["4. রাজশাহী টু বরিশাল", "https://drive.google.com/drive/folders/1FheeZ49p62z4YWxWKSU22R_2RjC4iALg"],
     "map5": ["5. ঢাকা সিটি ম্যাপ মোড", "https://youtu.be/tttZqNFDO4c?si=QaWGb0_2sqiBBo7c"]
 }
 PAID_MAPS = {

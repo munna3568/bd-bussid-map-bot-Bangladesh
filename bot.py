@@ -48,6 +48,10 @@ PAID_MAPS = {
     "p20": ["20. বাংলাদেশী গ্ৰাম ম্যাপ", "https://drive.google.com/drive/folders/1aXHSa9p-EIfseY1UOeNRCL5riKx3KkhP"],
     "p21": ["21. ঢাকা মাওয়া হাইওয়ে", "https://drive.google.com/drive/folders/1mnRyQCrAFL2pHQI6dShc1lALkta5bOi5"],
     "p22": ["22. যমুনা রেলওয়ের সেতু ম্যাপ ও ট্রেন", "https://drive.google.com/drive/folders/1yaJZx6jZTFXReuAQHVcTObkQaL6UDVRz"],
+    "p23": ["23. ঢাকা টু কুমিল্লা ম্যাপ মোড", "https://drive.google.com/drive/folders/1SfF_i8ztWkAdakaqknTGn3an85KQeZAC"],
+"p24": ["24. খাগড়াছড়ি ভিলেজ ম্যাপ", "https://drive.google.com/drive/folders/1Rd03yTmTNYpdMoPeGlENokz19Rh44TJ2"],
+"p25": ["25. বরিশাল অফ রোড নদী ম্যাপ", "https://drive.google.com/drive/folders/1KO9z-qTqO8xAwIx99hnLuW8mENWVmwXN"],
+"p26": ["26. খুলনা ম্যাপ", "https://drive.google.com/drive/folders/1FE1g7o_9OK5uouv6jPo5dBwBDNtOnFBx"]
 }
 BUS_MODS = {
     "bm1":  ["1. হানিফ", "https://bdbussid.com/hanif-fuso-non-ac-bus-mod"],
@@ -133,7 +137,7 @@ async def send_main_menu(target):
         [InlineKeyboardButton("🎨 বাস স্কিন 4টি", callback_data=get_callback_data('busskin'))],
         [InlineKeyboardButton("📦 OBB 7টি", callback_data=get_callback_data('obb'))],
         [InlineKeyboardButton("🆓 ম্যাপ 5টি", callback_data=get_callback_data('free'))],
-        [InlineKeyboardButton("💎 পেইড ম্যাপ 18টি - 40 টাকা", callback_data=get_callback_data('paid'))],
+        [InlineKeyboardButton("💎 পেইড ম্যাপ ২৬টি - 40 টাকা", callback_data=get_callback_data('paid'))],
         [InlineKeyboardButton("📺 YouTube", url=YOUTUBE_URL)],
         [InlineKeyboardButton("📘 Facebook Page", url=FB_URL)],
         [InlineKeyboardButton("📢 ETS2 Channel", url=FREE_CHANNEL_URL)],
@@ -263,8 +267,8 @@ async def reject_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def post_init(application: Application):
     commands = [
         BotCommand("start", "Start - বট চালু করুন"),
-        BotCommand("free", "Free Maps 4টি"),
-        BotCommand("shop", "Premium Maps 18টি"),
+        BotCommand("free", "Free Maps ৫টি"),
+        BotCommand("shop", "Premium Maps ২৬টি"),
         BotCommand("payment", "bKash/Rocket 01832533534"),
         BotCommand("contact", f"Admin {ADMIN_USERNAME}"),
         BotCommand("channel", "আমাদের চ্যানেল"),

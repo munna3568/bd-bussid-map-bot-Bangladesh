@@ -137,7 +137,7 @@ async def send_main_menu(target):
         [InlineKeyboardButton("🎨 বাস স্কিন 4টি", callback_data=get_callback_data('busskin'))],
         [InlineKeyboardButton("📦 OBB 7টি", callback_data=get_callback_data('obb'))],
         [InlineKeyboardButton("🆓 ম্যাপ 5টি", callback_data=get_callback_data('free'))],
-        [InlineKeyboardButton("💎 পেইড ম্যাপ ২৬টি - 40 টাকা", callback_data=get_callback_data('paid'))],
+        [InlineKeyboardButton("💎 পেইড ম্যাপ ২৬টি - 30 টাকা", callback_data=get_callback_data('paid'))],
         [InlineKeyboardButton("📺 YouTube", url=YOUTUBE_URL)],
         [InlineKeyboardButton("📘 Facebook Page", url=FB_URL)],
         [InlineKeyboardButton("📢 ETS2 Channel", url=FREE_CHANNEL_URL)],
@@ -156,7 +156,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def free_command(update: Update, context: ContextTypes.DEFAULT_TYPE): await button_handler_fake(update, context, 'free')
 async def shop_command(update: Update, context: ContextTypes.DEFAULT_TYPE): await button_handler_fake(update, context, 'paid')
 async def payment_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = f"💳 **পেমেন্ট ইনফো**\n\nবিকাশ/রকেট/নগদ: `{BKASH}`\nপেইড ম্যাপ: 40 টাকা"
+    text = f"💳 **পেমেন্ট ইনফো**\n\nবিকাশ/রকেট/নগদ: `{BKASH}`\nপেইড ম্যাপ: 30 টাকা"
     await update.message.reply_text(text, parse_mode='Markdown')
 async def contact_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = f"👨‍💻 **Admin Contact**\n\nযেকোনো সমস্যার জন্য মেসেজ করুন: {ADMIN_USERNAME}"
@@ -207,7 +207,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard = [[InlineKeyboardButton(name[0], callback_data=get_callback_data(key))] for key, name in FREE_MAPS.items()] + back_btn
         await query.message.reply_text("🆓 নিচ থেকে ১টি ম্যাপ নাও:" + footer, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
     elif base_key == 'paid':
-        keyboard = [[InlineKeyboardButton(f"{name[0]} - 40৳", callback_data=get_callback_data(key))] for key, name in PAID_MAPS.items()] + back_btn
+        keyboard = [[InlineKeyboardButton(f"{name[0]} - 30৳", callback_data=get_callback_data(key))] for key, name in PAID_MAPS.items()] + back_btn
         await query.message.reply_text("💎 নিচ থেকে ১টি পেইড ম্যাপ সিলেক্ট করো:" + footer, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
     elif base_key == 'back': await send_main_menu(query.message)
     elif base_key in FREE_MAPS:
@@ -220,7 +220,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await query.message.reply_text("⚠️ 2টি চ্যানেলেই জয়েন করতে হবে।", reply_markup=InlineKeyboardMarkup(keyboard))
     elif base_key in PAID_MAPS:
         user_data[user_id] = base_key; name = PAID_MAPS[base_key][0]
-        await query.message.reply_text(f"💰 **{name}**\n\nসেন্ড মানি: **40 টাকা**\nবিকাশ/রকেট: `{BKASH}`\n\nটাকা পাঠিয়ে স্কিনশট এই চ্যাটে পাঠাও।" + footer, reply_markup=InlineKeyboardMarkup(back_btn), parse_mode='Markdown')
+        await query.message.reply_text(f"💰 **{name}**\n\nসেন্ড মানি: **30 টাকা**\nবিকাশ/রকেট: `{BKASH}`\n\nটাকা পাঠিয়ে স্কিনশট এই চ্যাটে পাঠাও।" + footer, reply_markup=InlineKeyboardMarkup(back_btn), parse_mode='Markdown')
 
 async def screenshot_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.message.from_user.id

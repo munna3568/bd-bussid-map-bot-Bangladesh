@@ -274,12 +274,67 @@ async def post_init(application: Application):
         BotCommand("channel", "আমাদের চ্যানেল"),
         BotCommand("stats", "Bot Stats - Admin"),
         BotCommand("users", "User List - Admin"),
+        BotCommand("broadcast", "Broadcast - Admin"),
     ]
     await application.bot.set_my_commands(commands)
 
 def main():
+    async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id!= MY_ID:
+        return
+    context.user_data['broadcast'] = True
+    await update.message.reply_text("📢 এখন যে নোটিশ সবাইকে দিতে চাও, সেটা লিখে পাঠাও:")
+
+async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.user_data.get('broadcast'):
+        return
+    if update.effective_user.id!= MY_ID:
+        return
+    context.user_data['broadcast'] = False
+    notice = update.message.text
+    conn = sqlite3.connect(DB_FILE)
+    c = conn.cursor()
+    c.execute("SELECT user_id FROM users")
+    all_users = c.fetchall()
+    conn.close()
+    count = 0
+    msg = await update.message.reply_text(f"⏳ {len(all_users)} জনকে পাঠানো শুরু করলাম...")
+    for (uid,) in all_users:
+        try:
+            await context.bot.send_message(chat_id=uid, text=notice)
+            count += 1
+        except:
+            pass
+    await msg.edit_text(f"✅ {count} জনকে পাঠানো শেষ!")
+
+async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id!= MY_ID:
+        return
+    conn = sqlite3.connect(DB_FILE)
+    c = conn.cursor()
+    c.execute("SELECT COUNT(*) FROM users")
+    total = c.fetchone()[0]
+    conn.close()
+    await update.message.reply_text(f"📊 **বট স্ট্যাটাস**\n\n👥 টোটাল ইউজার: {total}", parse_mode='Markdown')
+
+async def users_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id!= MY_ID:
+        return
+    conn = sqlite3.connect(DB_FILE)
+    c = conn.cursor()
+    c.execute("SELECT user_id, join_date FROM users ORDER BY id DESC LIMIT 20")
+    users = c.fetchall()
+    conn.close()
+    text = f"👥 **সর্বশেষ {len(users)} জন ইউজার**\n\n"
+    for i, (uid, date) in enumerate(users, 1):
+        text += f"{i}. `{uid}` - {date}\n"
+    await update.message.reply_text(text, parse_mode='Markdown')
+
+def main():
     init_db()
-    if not TOKEN: print("ERROR: TOKEN not found"); return
+    if not TOKEN:
+        print("ERROR: TOKEN not found")
+        return
     app = Application.builder().token(TOKEN).post_init(post_init).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("free", free_command))
@@ -288,24 +343,13 @@ def main():
     app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("channel", channel_command))
     app.add_handler(CommandHandler("stats", stats))
+    app.add_handler(CommandHandler("broadcast", broadcast_command))
     app.add_handler(CommandHandler("users", users_list))
     app.add_handler(CallbackQueryHandler(button_handler))
     app.add_handler(MessageHandler(filters.PHOTO | filters.Document.ALL, screenshot_handler))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, unknown_text_handler))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, broadcast_message_handler))
     print("BD Bussid Map Bot Running v7.8 with Commands...")
     app.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
 
-async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message.from_user.id!= MY_ID: return
-    conn = sqlite3.connect(DB_FILE); c = conn.cursor(); c.execute("SELECT COUNT(*) FROM users"); total = c.fetchone()[0]; conn.close()
-    await update.message.reply_text(f"📊 **বট স্ট্যাটস**\n\n👥 মোট ইউজার: `{total}` জন", parse_mode='Markdown')
-
-async def users_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message.from_user.id!= MY_ID: return
-    conn = sqlite3.connect(DB_FILE); c = conn.cursor(); c.execute("SELECT user_id, first_join FROM users ORDER BY first_join DESC LIMIT 100"); users = c.fetchall(); conn.close()
-    text = f"👥 **সর্বশেষ {len(users)} জন ইউজার**\n\n"
-    for i, (uid, date) in enumerate(users, 1): text += f"{i}. `ID: {uid}` - {date}\n"
-    await update.message.reply_text(text, parse_mode='Markdown')
-
-
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    main()

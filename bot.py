@@ -278,9 +278,8 @@ async def post_init(application: Application):
     ]
     await application.bot.set_my_commands(commands)
 
-def main():
-    async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.effective_user.id!= MY_ID:
+async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != MY_ID:
         return
     context.user_data['broadcast'] = True
     await update.message.reply_text("📢 এখন যে নোটিশ সবাইকে দিতে চাও, সেটা লিখে পাঠাও:")
@@ -288,7 +287,7 @@ def main():
 async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.user_data.get('broadcast'):
         return
-    if update.effective_user.id!= MY_ID:
+    if update.effective_user.id != MY_ID:
         return
     context.user_data['broadcast'] = False
     notice = update.message.text
@@ -306,6 +305,7 @@ async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAUL
         except:
             pass
     await msg.edit_text(f"✅ {count} জনকে পাঠানো শেষ!")
+    
 
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id!= MY_ID:

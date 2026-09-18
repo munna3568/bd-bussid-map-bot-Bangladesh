@@ -27,7 +27,7 @@ FREE_MAPS = {
 "map2": ["2. Bangladesh 300 Fit", "https://drive.google.com/drive/folders/1-jNRfPjI4OlGfDQEglfMuCk2mtj7hedV"], 
 "map3": ["3. যমুনা সেতু ম্যাপ", "https://drive.google.com/drive/folders/1A_0zEQ9e8QIDLPjRbT7PmjXDZFap4V8Z"], 
 "map4": ["4. রাজশাহী টু বরিশাল", "https://drive.google.com/drive/folders/1FheeZ49p62z4YWxWKSU22R_2RjC4iALg"], 
-"map5": ["5. ঢাকা সিটি ম্যাপ মোড", "https://youtu.be/tttZqNFDO4c?si=11WOdhQGkTcEkK6f"] 
+"map5": ["5. ঢাকা সিটি ম্যাপ মোড", "https://youtu.be/tttZqNFDO4c?si=11WOdhQGkTcEkK6f"],
     "map6": ["6. ফ্রি ফায়ার ম্যাপ মোড", "https://drive.google.com/drive/folders/1kWNnevLzQlKuTcbEOMhVOn-sgz9VnH-t"]
 }
 PAID_MAPS = {

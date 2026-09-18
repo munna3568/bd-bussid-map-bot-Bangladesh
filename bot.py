@@ -286,26 +286,29 @@ async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("📢 এখন যে নোটিশ সবাইকে দিতে চাও, সেটা লিখে পাঠাও:")
 
 async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if not context.user_data.get('broadcast'):
+    if context.user_data.get('broadcast'):
+        if update.effective_user.id != MY_ID:
+            return
+        context.user_data['broadcast'] = False
+        notice = update.message.text
+        conn = sqlite3.connect(DB_FILE)
+        c = conn.cursor()
+        c.execute("SELECT user_id FROM users")
+        all_users = c.fetchall()
+        conn.close()
+        count = 0
+        msg = await update.message.reply_text(f"⏳ {len(all_users)} জনকে পাঠানো শুরু করলাম...")
+        for (uid,) in all_users:
+            try:
+                await context.bot.send_message(chat_id=uid, text=notice)
+                count += 1
+            except:
+                pass
+        await msg.edit_text(f"✅ {count} জনকে পাঠানো শেষ!")
         return
-    if update.effective_user.id != MY_ID:
-        return
-    context.user_data['broadcast'] = False
-    notice = update.message.text
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute("SELECT user_id FROM users")
-    all_users = c.fetchall()
-    conn.close()
-    count = 0
-    msg = await update.message.reply_text(f"⏳ {len(all_users)} জনকে পাঠানো শুরু করলাম...")
-    for (uid,) in all_users:
-        try:
-            await context.bot.send_message(chat_id=uid, text=notice)
-            count += 1
-        except:
-            pass
-    await msg.edit_text(f"✅ {count} জনকে পাঠানো শেষ!")
+
+    # যদি কেউ উল্টা পাল্টা কিছু লেখে
+    await update.message.reply_text("কি ভাই কিছু বুঝলাম না তো 😅\nStart বাটনে অথবা হাতের নিচের বাম দিক থেকে Menu বাটনে চাপুন 👇")
     
 
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):

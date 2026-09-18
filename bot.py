@@ -137,7 +137,7 @@ async def send_main_menu(target):
         [InlineKeyboardButton("🚌 বাস মোড 21টি - 200-240 KM/H", callback_data=get_callback_data('busmod'))],
         [InlineKeyboardButton("🎨 বাস স্কিন 4টি", callback_data=get_callback_data('busskin'))],
         [InlineKeyboardButton("📦 OBB 7টি", callback_data=get_callback_data('obb'))],
-        [InlineKeyboardButton("🆓 ম্যাপ 5টি", callback_data=get_callback_data('free'))],
+        [InlineKeyboardButton("🆓 ম্যাপ 6টি", callback_data=get_callback_data('free'))],
         [InlineKeyboardButton("💎 পেইড ম্যাপ ২৬টি - 30 টাকা", callback_data=get_callback_data('paid'))],
         [InlineKeyboardButton("📺 YouTube", url=YOUTUBE_URL)],
         [InlineKeyboardButton("📘 Facebook Page", url=FB_URL)],

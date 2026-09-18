@@ -1,4 +1,5 @@
 import os
+import google.generativeai as genai
 import logging
 import uuid
 import base64
@@ -8,6 +9,9 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, BotComm
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 from telegram.error import Forbidden, BadRequest
 
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=GEMINI_API_KEY)
+model = genai.GenerativeModel("gemini-1.5-flash")
 TOKEN = os.getenv("TOKEN")
 CHANNEL_ID = -1003741615712
 FREE_CHANNEL_ID = -1004392467475
@@ -285,7 +289,7 @@ async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['broadcast'] = True
     await update.message.reply_text("📢 এখন যে নোটিশ সবাইকে দিতে চাও, সেটা লিখে পাঠাও:")
 
-async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+ async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if context.user_data.get('broadcast'):
         if update.effective_user.id != MY_ID:
             return
@@ -297,18 +301,27 @@ async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAUL
         all_users = c.fetchall()
         conn.close()
         count = 0
-        msg = await update.message.reply_text(f"⏳ {len(all_users)} জনকে পাঠানো শুরু করলাম...")
+        msg = await update.message.reply_text(f"⏳ {len(all_users)} জনকে পাঠানো হচ্ছে...")
         for (uid,) in all_users:
             try:
                 await context.bot.send_message(chat_id=uid, text=notice)
                 count += 1
             except:
                 pass
-        await msg.edit_text(f"✅ {count} জনকে পাঠানো শেষ!")
+        await msg.edit_text(f"✅ {count} জনকে পাঠানো হয়েছে।")
         return
 
-    # যদি কেউ উল্টা পাল্টা কিছু লেখে
-    await update.message.reply_text("কি ভাই কিছু বুঝলাম না তো 😅\nStart বাটনে অথবা হাতের নিচের বাম দিক থেকে Menu বাটনে চাপুন 👇")
+    # ===== যদি Broadcast না হয়, তাহলে Gemini AI উত্তর দিবে =====
+    user_text = update.message.text
+    if len(user_text) < 2:
+        return
+        
+    try:
+        await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
+        response = model.generate_content(f"তুমি BD Bussid Map Bot, BUSSID নিয়ে বাংলায় হেল্প করো। ইউজার ম্যাপ চাইলে /free, /shop কমান্ড ব্যবহার করতে বলো। ইউজারের মেসেজ: {user_text}")
+        await update.message.reply_text(response.text)
+    except Exception as e:
+        print(f"AI Error: {e}")
     
 
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -351,8 +364,7 @@ def main():
     app.add_handler(CommandHandler("users", users_list))
     app.add_handler(CallbackQueryHandler(button_handler))
     app.add_handler(MessageHandler(filters.PHOTO | filters.Document.ALL, screenshot_handler))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, broadcast_message_handler))
-    print("BD Bussid Map Bot Running v7.8 with Commands...")
+    
     app.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
 
 if __name__ == '__main__':

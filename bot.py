@@ -322,7 +322,7 @@ async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAUL
     except Exception as e:
         print(f"AI Error: {e}")
 
-async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id!= MY_ID:
         return

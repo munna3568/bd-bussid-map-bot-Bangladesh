@@ -317,12 +317,12 @@ async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAUL
     try:
         await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
         import asyncio
-        prompt = f"You are BD Bussid Map Bot like Meta AI. Reply in same language as: {user_text}. If map asked, say use /free and /shop."
-                response = await asyncio.to_thread(
+                prompt = f"You are BD Bussid Map Bot like Meta AI. Reply in same language as: {user_text}. If map asked, say use /free and /shop."
+        response = await asyncio.to_thread(
             genai_client.models.generate_content,
             model="gemini-3.6-flash",
             contents=prompt
-                )
+        )
         if response.text:
             await update.message.reply_text(response.text)
         else:

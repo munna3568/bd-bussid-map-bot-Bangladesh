@@ -284,14 +284,14 @@ async def post_init(application: Application):
     await application.bot.set_my_commands(commands)
 
 async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.effective_user.id != MY_ID:
+    if update.effective_user.id!= MY_ID:
         return
     context.user_data['broadcast'] = True
     await update.message.reply_text("📢 এখন যে মেসেজ দিবেন সেটা সবাইকে পাঠানো হবে")
 
 async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if context.user_data.get('broadcast'):
-        if update.effective_user.id != MY_ID:
+        if update.effective_user.id!= MY_ID:
             return
         context.user_data['broadcast'] = False
         notice = update.message.text
@@ -311,17 +311,21 @@ async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAUL
         await msg.edit_text(f"✅ {count} জনকে পাঠানো হয়েছে।")
         return
 
-    # ===== যদি Broadcast না হয়, তাহলে Gemini AI উত্তর দিবে =====
     user_text = update.message.text
     if len(user_text) < 2:
         return
     try:
         await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
-        response = model.generate_content(f"You are BD Bussid Map Bot like Meta AI. You MUST reply in the same language the user used. If user writes Bengali, reply Bengali. If English, reply English. If Hindi, reply Hindi. Any language - detect from this: {user_text}. If user asks for map, tell them to use /free and /shop.")
-        await update.message.reply_text(response.text)
+        import asyncio
+        prompt = f"You are BD Bussid Map Bot like Meta AI. Reply in same language as: {user_text}. If map asked, say use /free and /shop."
+        response = await asyncio.to_thread(model.generate_content, prompt)
+        if response.text:
+            await update.message.reply_text(response.text)
+        else:
+            await update.message.reply_text("ভাই একটু অন্য ভাবে বলো।")
     except Exception as e:
         print(f"AI Error: {e}")
-
+        await update.message.reply_text(f"❌ AI Error: {e}")
 
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id!= MY_ID:

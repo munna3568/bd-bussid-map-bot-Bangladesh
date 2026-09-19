@@ -11,7 +11,7 @@ from telegram.error import Forbidden, BadRequest
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.0-flash")
 TOKEN = os.getenv("TOKEN")
 CHANNEL_ID = -1003741615712
 FREE_CHANNEL_ID = -1004392467475

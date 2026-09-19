@@ -287,9 +287,9 @@ async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id != MY_ID:
         return
     context.user_data['broadcast'] = True
-    await update.message.reply_text("📢 এখন যে নোটিশ সবাইকে দিতে চাও, সেটা লিখে পাঠাও:")
+    await update.message.reply_text("📢 এখন যে মেসেজ দিবেন সেটা সবাইকে পাঠানো হবে")
 
- async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if context.user_data.get('broadcast'):
         if update.effective_user.id != MY_ID:
             return
@@ -320,8 +320,9 @@ async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         response = model.generate_content(f"You are BD Bussid Map Bot like Meta AI. You MUST reply in the same language the user used. If user writes Bengali, reply Bengali. If English, reply English. If Hindi, reply Hindi. Any language - detect from this: {user_text}. If user asks for map, tell them to use /free and /shop.")
         await update.message.reply_text(response.text)
     except Exception as e:
-        print(f"AI Error: {e}")    
+        print(f"AI Error: {e}")
 
+async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id!= MY_ID:
         return

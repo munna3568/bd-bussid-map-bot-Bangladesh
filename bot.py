@@ -273,7 +273,7 @@ async def post_init(application: Application):
     commands = [
         BotCommand("start", "Start - বট চালু করুন"),
         BotCommand("free", "Free Maps ৫টি"),
-        BotCommand("shop", "Premium Maps ২৬টি"),
+        BotCommand("shop", "Premium Maps ২৩টি"),
         BotCommand("payment", "bKash/Rocket 01832533534"),
         BotCommand("contact", f"Admin {ADMIN_USERNAME}"),
         BotCommand("channel", "আমাদের চ্যানেল"),

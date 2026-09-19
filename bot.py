@@ -311,13 +311,15 @@ async def broadcast_message_handler(update: Update, context: ContextTypes.DEFAUL
         await msg.edit_text(f"✅ {count} জনকে পাঠানো হয়েছে।")
         return
 
+        return
+
     user_text = update.message.text
     if len(user_text) < 2:
         return
     try:
         await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
         import asyncio
-                prompt = f"You are BD Bussid Map Bot like Meta AI. Reply in same language as: {user_text}. If map asked, say use /free and /shop."
+        prompt = f"You are BD Bussid Map Bot like Meta AI. Reply in same language as: {user_text}. If map asked, say use /free and /shop."
         response = await asyncio.to_thread(
             genai_client.models.generate_content,
             model="gemini-3.6-flash",
@@ -340,6 +342,9 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     total = c.fetchone()[0]
     conn.close()
     await update.message.reply_text(f"📊 **বট স্ট্যাটাস**\n\n👥 টোটাল ইউজার: {total}", parse_mode='Markdown')
+    c.execute("SELECT COUNT(*) FROM users")
+    total = c.fetchone()[0]
+    conn.clos
 
 async def users_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id!= MY_ID:

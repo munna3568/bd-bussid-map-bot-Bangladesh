@@ -315,14 +315,12 @@ async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_text = update.message.text
     if len(user_text) < 2:
         return
-        
     try:
         await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
-            response = model.generate_content(f"You are BD Bussid Map Bot, friendly like Meta AI. Your job is BUSSID help. IMPORTANT RULE: You MUST reply in the exact same language and same writing style as the user. - If user writes Bangla (কেমন আছো) -> reply in Bangla. - If user writes Banglish / Roman Bangla (kemon aso, vlo aso ki koro) -> reply in Banglish / Roman Bangla. - If user writes English -> reply in English. - Any other language -> reply in that same language. User message: {user_text}. If user wants map, guide to /free and /shop.")
+        response = model.generate_content(f"You are BD Bussid Map Bot like Meta AI. You MUST reply in the same language the user used. If user writes Bengali, reply Bengali. If English, reply English. If Hindi, reply Hindi. Any language - detect from this: {user_text}. If user asks for map, tell them to use /free and /shop.")
         await update.message.reply_text(response.text)
     except Exception as e:
-        print(f"AI Error: {e}")
-    
+        print(f"AI Error: {e}")    
 
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id!= MY_ID:

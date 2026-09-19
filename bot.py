@@ -1,5 +1,6 @@
 import os
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import logging
 import uuid
 import base64
@@ -10,8 +11,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 from telegram.error import Forbidden, BadRequest
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel("gemini-2.5-flash")
+genai_client = genai.Client(api_key=GEMINI_API_KEY)
 TOKEN = os.getenv("TOKEN")
 CHANNEL_ID = -1003741615712
 FREE_CHANNEL_ID = -1004392467475
